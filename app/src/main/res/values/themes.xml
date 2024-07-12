@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ChatApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#035C84</item>
+    </style>
+
+    <style name="Theme.ChatApp" parent="Base.Theme.ChatApp" />
+</resources>
