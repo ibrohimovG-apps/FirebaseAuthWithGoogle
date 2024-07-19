@@ -1,6 +1,8 @@
 package com.example.chatapp.models
 
-class Users {
+import java.io.Serializable
+
+class Users:Serializable {
     var uid: String? = null
     var email: String? = null
     var name: String? = null

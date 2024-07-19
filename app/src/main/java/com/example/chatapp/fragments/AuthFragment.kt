@@ -38,7 +38,7 @@ class AuthFragment : Fragment() {
     ): View {
 
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("Users")
+        databaseReference = firebaseDatabase.getReference("Accounts")
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.client_id)).requestEmail().build()
@@ -50,9 +50,9 @@ class AuthFragment : Fragment() {
         binding.btnSign.setOnClickListener {
             signIn()
         }
-
-        binding.btnOut.setOnClickListener {
-            googleSignInClient.signOut()
+        if (firebaseAuth.currentUser != null) {
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.accauntsFragment)
         }
 
         return binding.root
@@ -73,7 +73,6 @@ class AuthFragment : Fragment() {
                 firebaseAuthWithGoogle(accaunt.idToken!!)
 
             } catch (e: ApiException) {
-                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,4 +62,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:19.2.0")
 
     implementation (libs.picasso)
+
+    //noinspection UseTomlInstead
+    implementation("com.google.code.gson:gson:2.10.1")
 }

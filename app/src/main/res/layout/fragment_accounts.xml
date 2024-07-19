@@ -47,7 +47,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/white"
-        tools:listitem="@layout/item_rv"
+        tools:listitem="@layout/item_accounts"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/rv"/>
 

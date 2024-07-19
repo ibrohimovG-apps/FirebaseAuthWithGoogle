@@ -3,22 +3,25 @@ package com.example.chatapp.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chatapp.databinding.ItemRvBinding
+import com.example.chatapp.databinding.ItemAccountsBinding
 import com.example.chatapp.models.Users
 import com.squareup.picasso.Picasso
 
-class RvAdapter(val list: ArrayList<Users>) : RecyclerView.Adapter<RvAdapter.Vh>() {
+class RvAdapter(val list: ArrayList<Users>, val rvAction: RvAction) : RecyclerView.Adapter<RvAdapter.Vh>() {
 
-    inner class Vh(private val itemRvBinding: ItemRvBinding) : RecyclerView.ViewHolder(itemRvBinding.root) {
+    inner class Vh(private val itemAccountsBinding: ItemAccountsBinding) : RecyclerView.ViewHolder(itemAccountsBinding.root) {
         fun onBind(users: Users) {
-            Picasso.get().load(users.imgLink).into(itemRvBinding.imgUser)
-            itemRvBinding.tvName.text = users.name
-            itemRvBinding.tvEmail.text = users.email
+            Picasso.get().load(users.imgLink).into(itemAccountsBinding.imgUser)
+            itemAccountsBinding.tvName.text = users.name
+            itemAccountsBinding.tvEmail.text = users.email
+            itemAccountsBinding.root.setOnClickListener {
+                rvAction.onClick(users)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Vh {
-        return Vh(ItemRvBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return Vh(ItemAccountsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int = list.size
@@ -26,4 +29,9 @@ class RvAdapter(val list: ArrayList<Users>) : RecyclerView.Adapter<RvAdapter.Vh>
     override fun onBindViewHolder(holder: Vh, position: Int) {
         holder.onBind(list[position])
     }
+
+    interface RvAction{
+        fun onClick(users: Users)
+    }
+
 }
